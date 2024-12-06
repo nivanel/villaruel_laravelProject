@@ -17,6 +17,12 @@
                     <span class="block sm:inline">Student has been added successfully</span>
                 </div>
             @endif
+                @if(session('deleted'))
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+                    <strong class="font-bold">{{ session('deleted') }}</strong>
+                    <span class="block sm:inline">Student has been added successfully</span>
+                </div>
+            @endif
                 <h3 class="text-lg font-medium mb-4">Add New Student</h3>
                 <form method="POST" action="{{ route('student.store') }}">
                     @csrf
@@ -68,7 +74,7 @@
                                 <td class="py-2 border-b px-4 text-center">{{ $student->phone }}</td>
                                 <td class="py-2 border-b px-4 text-center">{{ $student->address }}</td>
                                 <td class="py-2 border-b px-4 text-center"> 
-                                    <a href="#" class="text-blue-500 hover:text-blue-700">Edit</a>
+                                    <a href="{{ route('student.edit', $student->id) }}" class="text-blue-500 hover:text-blue-700">Edit</a>
                                     <form method="POST" action="{{ route('student.destroy', $student->id) }}" style="display:inline;">
                                         @csrf
                                         @method('DELETE')
