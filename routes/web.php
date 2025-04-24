@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FeedBackController;
 use App\Models\Student;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -26,5 +27,9 @@ Route::delete('/student/{student}', [StudentController::class, 'destroy']) -> na
 Route::get('/student/{student}edit', [StudentController::class, 'edit']) -> name ('student.edit');
 
 Route::put('/student/{student}', [StudentController::class, 'update']) -> name ('student.update');
+
+
+Route::post('/feedback', [FeedBackController::class, 'store']);
+
 
 require __DIR__.'/auth.php';
